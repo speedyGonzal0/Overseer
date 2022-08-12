@@ -29,7 +29,7 @@ const Login = () => {
           }}/>
         <Button type="submit" shadow color="primary">Submit</Button>
       </form>
-      <Link block color="primary" href="http://localhost:3000/">
+      <Link block color="primary" href="http://localhost:3000/register">
         Create an account
       </Link>
     </main>
