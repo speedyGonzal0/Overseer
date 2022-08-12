@@ -1,0 +1,21 @@
+.loginMain{
+    width: 100%;
+    height: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10%;
+}
+
+.loginMain h1{
+    cursor: default;
+}
+
+.loginForm{
+    display: flex;
+    flex-direction: column;
+    margin-top: 1%;
+    width: 20%;
+    height: 100%;
+    gap: 20%;
+}
