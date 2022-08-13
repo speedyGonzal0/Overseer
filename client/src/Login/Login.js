@@ -19,7 +19,7 @@ const Login = () => {
     <main className='loginMain'>
       <h1>Login</h1>
       <form onSubmit={submitLogin} className="loginForm">
-        <Input labelPlaceholder="Email" required
+        <Input type="email" labelPlaceholder="Email" required
               onChange={(e) => {
               setEmail(e.target.value);
             }}/>

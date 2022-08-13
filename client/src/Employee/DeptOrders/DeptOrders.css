@@ -1,0 +1,25 @@
+.deptOrdersContainer{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2%;
+}
+
+.deptOrders{
+    width: 50%;
+    margin-top: 5%;
+}
+
+.order{
+    display: flex;
+    flex-direction: column;
+}
+
+.deptBtn{
+    margin-top: 2%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
