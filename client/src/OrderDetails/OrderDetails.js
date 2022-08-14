@@ -7,23 +7,24 @@ const OrderDetails = () => {
 
     const {id} = useParams();
     const myOrders = [
-        {orderid: 1, title: "abc", quantity: 1000, material: "Nylon", size: "M", price: 40, colorCode: "#A7Dh23", due: "10-Aug-2022", status: "Accepted", description: "dasdhaskjdhjwkjhiudwahdaksjdhjksa dhaskjdh jksahdjkhsakj Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum hdlkjash"},
-        {orderid: 2, title: "abc", quantity: 100, material: "Nylon", size: "M", price: 40, colorCode: "#A7Dh23", due: "10-Aug-2022",status: "Accepted", description: "dasdhaskjdhjwkjhiudwahdaksjdhjksa dhaskjdh jksahdjkhsakj Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum hdlkjash"}
+        {orderid: 1, title: "abc", quantity: 1000, product:"Sweater", material: "Nylon", size: "M", price: 40, colorCode: "#A7Dh23", due: "10/07/2022", status: "Accepted", description: "dasdhaskjdhjwkjhiudwahdaksjdhjksa dhaskjdh jksahdjkhsakj Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum hdlkjash"},
+        {orderid: 2, title: "abc", quantity: 100, product:"Sweater", material: "Nylon", size: "M", price: 40, colorCode: "#A7Dh23", due: "10/07/2022",status: "Accepted", description: "dasdhaskjdhjwkjhiudwahdaksjdhjksa dhaskjdh jksahdjkhsakj Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum hdlkjash"}
       ]
 
   return (
     <main className="orderDetailsContainer">
       {myOrders.filter(order => order.orderid == id).map(filteredorder => (
-        <body className='orderDetailsBody'>
+        <div className='orderDetailsBody' key={filteredorder.orderid}>
           <h1>{filteredorder.title}</h1>
           <div className="progress">
             <label>Progress</label>
             <Progress color="primary" value={25} />
           </div>
           <div className="orderDetailsTable">
-            <Table>
+            <Table aria-label="Order Details Table">
               <Table.Header>
                 <Table.Column>#ORDER</Table.Column>
+                <Table.Column>PRODUCT</Table.Column>
                 <Table.Column>QUANTITY</Table.Column>
                 <Table.Column>MATERIAL</Table.Column>
                 <Table.Column>SIZE</Table.Column>
@@ -35,6 +36,7 @@ const OrderDetails = () => {
               <Table.Body>
                 <Table.Row key="1">
                   <Table.Cell>{filteredorder.orderid}</Table.Cell>
+                  <Table.Cell>{filteredorder.product}</Table.Cell>
                   <Table.Cell>{filteredorder.quantity}</Table.Cell>
                   <Table.Cell>{filteredorder.material}</Table.Cell>
                   <Table.Cell>{filteredorder.size}</Table.Cell>
@@ -51,7 +53,7 @@ const OrderDetails = () => {
               <p>{filteredorder.description}</p>
             </Card.Body>
           </Card>
-        </body>
+        </div>
       ))}
     </main>
   )

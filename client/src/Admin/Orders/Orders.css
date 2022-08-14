@@ -1,0 +1,35 @@
+.ordersContainer{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ordersCardContainer{
+    width: 40%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 5%;
+    margin-top: 2%;
+}
+
+.orderCard{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.orderBody{
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.ordersGrid{
+    margin-top: 2%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}

@@ -23,13 +23,9 @@
     align-items: center;
 }
 
-.myOrdersCard body{
+.myOrdersBody{
     width: 100%;
     margin-top: 2%;
     display: flex;
     justify-content: space-around;
-}
-
-.myOrdersCard button{
-    margin-top: 10%;
 }

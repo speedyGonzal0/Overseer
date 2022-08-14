@@ -1,0 +1,37 @@
+.orderReqContainer{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.orderRequests{
+    width: 60%;
+    margin: 1%;
+}
+
+.orderRequestCard{
+    width: 98%;
+    height: 100%;
+    margin: 0.5%;
+}
+
+.orderReqBtn{
+    display: flex;
+    justify-content: center;
+    gap: 5%;
+    margin-top: 2%;
+}
+
+.orderReqBody{
+    width: 100%;
+    display: flex;
+    margin: 2% 0%;
+}
+
+.orderReqAttr{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
