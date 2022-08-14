@@ -1,60 +1,88 @@
 package com.theGonzalos.Overseer.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.sql.Date;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Task {
 
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY)
-    private int task_id;
-    private int dept_id;
-    private int order_id;
-    private String tasks;
-    private Date due;
+    private int taskId;
 
-    public int getTask_id() {
-        return task_id;
+    private String taskStatus;
+
+    private boolean isDeleted;
+
+    @JsonFormat(pattern="yyyy-MM-dd")
+    private java.sql.Date due;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="order_id", referencedColumnName = "reqId")
+    private Orders order;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "task")
+    private Set<Todo> todos = new HashSet<>();
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "employee_id", referencedColumnName = "employeeId")
+    private Employee employee;
+
+    public int getTaskId() {
+        return taskId;
     }
 
-    public void setTask_id(int task_id) {
-        this.task_id = task_id;
+    public void setTaskId(int task_id) {
+        this.taskId = task_id;
     }
 
-    public int getDept_id() {
-        return dept_id;
-    }
-
-    public void setDept_id(int dept_id) {
-        this.dept_id = dept_id;
-    }
-
-    public int getOrder_id() {
-        return order_id;
-    }
-
-    public void setOrder_id(int order_id) {
-        this.order_id = order_id;
-    }
-
-    public String getTasks() {
-        return tasks;
-    }
-
-    public void setTasks(String tasks) {
-        this.tasks = tasks;
-    }
-
-    public Date getDue() {
+    public java.sql.Date getDue() {
         return due;
     }
 
-    public void setDue(Date due) {
+    public void setDue(java.sql.Date due) {
         this.due = due;
+    }
+
+    public Orders getOrder() {
+        return order;
+    }
+
+    public void setOrder(Orders order) {
+        this.order = order;
+    }
+
+    public Set<Todo> getTodos() {
+        return todos;
+    }
+
+    public String getTaskStatus() {
+        return taskStatus;
+    }
+
+    public void setTaskStatus(String taskStatus) {
+        this.taskStatus = taskStatus;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
+    public boolean isDeleted() {
+        return isDeleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        isDeleted = deleted;
     }
 
 }

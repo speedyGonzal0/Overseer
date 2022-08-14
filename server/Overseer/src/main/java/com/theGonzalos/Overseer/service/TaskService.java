@@ -25,6 +25,12 @@ public class TaskService {
         return taskRepository.findById(taskID).get();
     }
 
+    public List<Task> getTasksByReqId(Integer reqId){
+        return taskRepository.findAllByOrder_ReqIdAndIsDeletedFalse(reqId);
+    }
+
+    public List<Task> getTasksByEmpId(Integer empId){ return taskRepository.findAllByEmployee_EmployeeId(empId); }
+
     public void deleteTask(Integer taskID){
         taskRepository.deleteById(taskID);
     }

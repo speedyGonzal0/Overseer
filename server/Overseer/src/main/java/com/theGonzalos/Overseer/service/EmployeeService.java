@@ -24,9 +24,7 @@ public class EmployeeService {
         return employeeRepository.findById(employee_id).get();
     }
 
-    public Employee getEmployeesByDeptId(Integer department_id){
-        return employeeRepository.findById(department_id).get();
-    }
+    public Employee getEmployee(String email, String pass) { return employeeRepository.getEmployeeByEmployeeEmailAndEmployeePass(email, pass); }
 
     public void removeEmployee(Integer employee_id){
         employeeRepository.deleteById(employee_id);
