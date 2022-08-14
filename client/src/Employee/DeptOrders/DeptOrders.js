@@ -26,7 +26,7 @@ const DeptOrders = () => {
                         <Checkbox value={task}>{task}</Checkbox>
                         )}
                     </Checkbox.Group>
-                    <div className='deptBtn'><Button>Mark as complete</Button></div>
+                    <div className='deptBtn'><Button shadow color="primary">Mark As Done</Button></div>
                 </Collapse>
             ))
         }
