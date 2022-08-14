@@ -1,0 +1,29 @@
+.orderDetailsContainer{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.orderDetailsBody{
+    width: 50%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5%;
+}
+
+.orderDetailsBody p{
+    padding: 1%;
+}
+
+.orderDetailsTable{
+    width: 100%;
+}
+
+.progress{
+    width: 100%;
+}
