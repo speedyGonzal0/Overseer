@@ -25,6 +25,17 @@ public class UserService {
         return userRepository.findById(id).get();
     }
 
+    public User getUser(String email, String password){
+        return userRepository.findByEmailAndPass(email, password);
+    }
+
+    public User getUser(String email){
+        return userRepository.findByEmail(email);
+    }
+    public boolean userExists(String email){
+        return userRepository.existsUserByEmail(email);
+    }
+
     public void removeUser(Integer id){
         userRepository.deleteById(id);
     }

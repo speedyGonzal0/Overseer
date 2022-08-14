@@ -1,9 +1,10 @@
 package com.theGonzalos.Overseer.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class User {
@@ -11,9 +12,19 @@ public class User {
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY)
     private int id;
+
+    @Column
     private String name;
+    @Column
     private String email;
+    @Column
     private String pass;
+
+    private String role;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "userId")
+    private Set<Orders> orders = new HashSet<>();
 
     public User(){
     }
@@ -48,5 +59,17 @@ public class User {
 
     public void setPass(String pass) {
         this.pass = pass;
+    }
+
+    public Set<Orders> getOrders() {
+        return orders;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }
