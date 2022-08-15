@@ -19,7 +19,7 @@ const Orders = () => {
             setAllOrders(response.data.filter(data => {
                 return data.reqStatus !== "Approved" && data.reqStatus !== "Pending";
             }))
-        })})
+        })}, [])
    
 
     orders = allorders.filter((order) => {

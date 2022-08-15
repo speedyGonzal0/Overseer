@@ -14,6 +14,7 @@ import Departments from './Admin/Departments/Departments';
 import Navbar from './Navbar/Navbar';
 import Error from './Error/Error';
 import { NextUIProvider } from '@nextui-org/react';
+import Mail from './User/Mail/Mail';
 
 function App() {
 
@@ -46,6 +47,7 @@ function App() {
                 <Route path="/request" element={<Request/>}/>
                 <Route path="/orderRequests" element={<OrderRequests/>}/>
                 <Route path="/orders" element={<Orders/>}/>
+                <Route path="/mail" element={<Mail/>}/>
                 <Route path="/departments" element={<Departments/>}/>
                 <Route path="/login" element={<Login loggedIn = {loggedIn} setLoggedIn={setLoggedIn} setAdmin={setAdmin}/>}/>
                 <Route path="/register" element={<Register/>}/>
@@ -59,6 +61,7 @@ function App() {
                 <Route path="/request" element={<Error/>}/>
                 <Route path="/orderRequests" element={<Error/>}/>
                 <Route path="/orders" element={<Error/>}/>
+                <Route path="/mail" element={<Mail/>}/>
                 <Route path="/departments" element={<Error/>}/>
                 <Route path="/login" element={<Login loggedIn = {loggedIn} setLoggedIn={setLoggedIn} setAdmin={setAdmin}/>}/>
                 <Route path="/register" element={<Register/>}/>

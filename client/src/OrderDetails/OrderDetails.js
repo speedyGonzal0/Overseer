@@ -16,6 +16,22 @@ const OrderDetails = () => {
       setOrder(response.data);
     });
     }, [id])
+
+    const progressBar = (progress) =>{
+      if (progress === "Pending") {
+        return 20;
+      } else if (progress === "Approved"){
+        return 40;
+      } else if (progress === "Processing"){
+        return 60;
+      } else if (progress === "Complete"){
+        return 80;
+      } else if (progress === "Delivered"){
+        return 100;
+      } else if (progress === "Canceled"){
+        return 0;
+      }
+    }
     
 
   return (
@@ -24,7 +40,7 @@ const OrderDetails = () => {
         <h1>{order.reqTitle}</h1>
           <div className="progress">
             <label>Progress</label>
-            <Progress color="primary" value={25} />
+            <Progress color="primary" value={progressBar(order.reqStatus)} />
           </div>
           <div className="orderDetailsTable">
             <Table aria-label="Order Details Table">
