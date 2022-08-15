@@ -1,6 +1,6 @@
 import React from 'react'
 import "./Orders.css"
-import { Button, Grid, Card } from "@nextui-org/react";
+import { Button, Grid, Card, Modal } from "@nextui-org/react";
 import { useNavigate } from 'react-router-dom';
 import { useState,useEffect } from 'react';
 import axios from "axios"
@@ -17,7 +17,7 @@ const Orders = () => {
          axios.get("http://localhost:8080/orders/all").then((response) => {
             console.log(response.data)
             setAllOrders(response.data.filter(data => {
-                return data.reqStatus !== "Approved" && data.reqStatus !== "Pending";
+                return data.reqStatus !== "Pending";
             }))
         })}, [])
    
@@ -31,6 +31,8 @@ const Orders = () => {
             return order.reqStatus === "Completed"
         } else if (action === 'canceled'){
             return order.reqStatus === "Canceled"
+        } else if (action === 'approved'){
+            return order.reqStatus === "Approved"
         }
     })
 
@@ -57,6 +59,9 @@ const Orders = () => {
             </Grid>
             <Grid>
                 <Button color="primary" shadow onClick={() => setAction("canceled")}>Canceled</Button>
+            </Grid>
+            <Grid>
+                <Button color="primary" shadow onClick={() => setAction("approved")}>Approved</Button>
             </Grid>
         </Grid.Container>
         <h5>Sort</h5>
@@ -86,6 +91,7 @@ const Orders = () => {
                             <p>Color: {order.reqItemColor}</p>
                             <p>Total Cost: {order.reqCost} BDT</p>
                         </div>
+                        {order.reqStatus === "Approved" && <Button>Assign Task</Button> }
                     </Card.Body>
                 </Card>
             ))}

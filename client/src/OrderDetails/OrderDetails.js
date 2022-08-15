@@ -24,7 +24,7 @@ const OrderDetails = () => {
         return 40;
       } else if (progress === "Processing"){
         return 60;
-      } else if (progress === "Complete"){
+      } else if (progress === "Completed"){
         return 80;
       } else if (progress === "Delivered"){
         return 100;
