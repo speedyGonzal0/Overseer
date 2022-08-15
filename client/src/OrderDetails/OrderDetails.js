@@ -56,7 +56,7 @@ const OrderDetails = () => {
           </div>
           <Card>
             <Card.Body>
-              <p>{order.reqDescription}</p>
+              <p>{order.reqDesc}</p>
             </Card.Body>
           </Card>
         </div>
