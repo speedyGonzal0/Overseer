@@ -11,14 +11,14 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-    gap: 5%;
-    margin-top: 2%;
+    margin-top: 1%;
 }
 
 .orderCard{
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 2% 0%;
 }
 
 .orderBody{
@@ -31,5 +31,12 @@
     margin-top: 2%;
     width: 100%;
     display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ordersGridContainer{
+    display: flex;
     justify-content: center;
+    align-items: center;
 }

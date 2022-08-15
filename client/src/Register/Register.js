@@ -2,18 +2,33 @@ import React from 'react'
 import "./Register.css"
 import { Input, Button, Link } from '@nextui-org/react';
 import { useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
+
+  let navigate = useNavigate();
 
     const [name, setName] = useState()
     const [email, setEmail] = useState()
     const [pass, setPass] = useState()
   
     const submitReg = (event) => {
-      console.log({name})
-      console.log({email})
-      console.log({pass})
       event.preventDefault();
+      axios.post("http://localhost:8080/user/register", {
+            name: name,
+            email: email,
+            pass: pass
+        }).then((response) => {
+            if (response.data.message) {
+                navigate("../login", { replace: true });
+                console.log(response.data.message);
+            }
+            else {
+                console.log(response.data);
+            }
+        });
+        event.target.reset();
     }
 
   return (
@@ -24,7 +39,7 @@ const Register = () => {
               onChange={(e) => {
               setName(e.target.value);
             }}/>
-        <Input labelPlaceholder="Email" required
+        <Input labelPlaceholder="Email" required 
               onChange={(e) => {
               setEmail(e.target.value);
             }}/>
