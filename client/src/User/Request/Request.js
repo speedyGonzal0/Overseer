@@ -2,8 +2,12 @@ import React from 'react'
 import "./Request.css"
 import { useState } from 'react';
 import { Input,Textarea, Button, Radio } from "@nextui-org/react";
+import axios from "axios"
+import { useNavigate } from "react-router-dom";
 
 const Request = () => {
+
+    let navigate = useNavigate();
 
     const [costPerProduct, setcostPerProduct] = useState(0)
     const [totalCost, settotalCost] = useState(0)
@@ -11,7 +15,7 @@ const Request = () => {
     const [product, setProduct] = useState(" ")
     const [material, setMaterial] = useState(" ")
     const [size, setSize] = useState(" ")
-    const [quantity, setQuantity] = useState(" ")
+    const [quantity, setQuantity] = useState(0)
     const [color, setColor] = useState()
     const [description, setDescription] = useState()
     const [title, setTitle] = useState(" ")
@@ -64,6 +68,32 @@ const Request = () => {
         
     }
 
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        let cost = costPerProduct * quantity;
+        axios.post("http://localhost:8080/orders/create", {
+            reqTitle: title,
+            reqItem: product,
+            reqItemSize: size,
+            reqItemColor: color,
+            reqItemQuantity: quantity,
+            reqDesc: description,
+            reqDate: date,
+            reqCost: cost
+        }, { withCredentials: true }).then((response) => {
+            if (response.data.message) {
+                console.log(response.data.message);                
+            }
+            else {
+                navigate("/myOrders", { replace: true });
+                // setLoggedIn(true);
+                console.log("pipo")
+                console.log(response.data);
+            }
+        });
+        event.target.reset();
+    }
+
 
   return (
     <main className='reqContainer'>
@@ -102,7 +132,7 @@ const Request = () => {
                 <p>Cost Per Product is <b>{costPerProduct} BDT</b> & Total Cost is <b>{costPerProduct * quantity} BDT</b></p>
             </div>
         </div>
-        <Button shadow color="primary" disabled={disabled}>Submit</Button>
+        <Button shadow color="primary" onClick={(e) => handleSubmit(e)} disabled={disabled}>Submit</Button>
     </main>
   )
 }

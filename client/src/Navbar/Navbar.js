@@ -2,11 +2,24 @@ import React from 'react'
 import "./Navbar.css"
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from '@nextui-org/react';
+import axios from "axios"
 
-const Navbar = ( { loggedIn, setLoggedIn }) => {
+
+const Navbar = ( {loggedIn, setLoggedIn} ) => {
 
   let navigate = useNavigate();
   
+
+  const submitLogout = (event) => {
+    event.preventDefault();
+    axios.get("http://localhost:8080/user/signout", {withCredentials : true}).then((response) => {
+      setLoggedIn(false);
+      navigate("/login");
+      console.log(response.data);
+      
+    });  
+  }
+
   return (
     <nav className = "navbarContainer">
       <div className="navbarLogo">
@@ -21,12 +34,12 @@ const Navbar = ( { loggedIn, setLoggedIn }) => {
           <div className="navbarLogin">
             <Button onClick={()=> navigate("/register")}>Register</Button>
             <Button bordered onClick={() => navigate("/login")}>Log In</Button>
-            <Button onClick={() => setLoggedIn(true)}>temp</Button>
+            {/* <Button onClick={() => setLoggedIn(true)}>temp</Button> */}
           </div>
           :
           <div className="navbarLoggedIn">
             <p>User name</p>
-            <Button onClick={() => setLoggedIn(false)}>Log out</Button>
+            <Button onClick={submitLogout}>Log out</Button>
           </div>
 
       }

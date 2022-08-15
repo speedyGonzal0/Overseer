@@ -82,8 +82,8 @@ public class UserController {
         if(user != null) {
             Cookie cookie = new Cookie("userEmail", user.getEmail());
             cookie.setMaxAge(7 * 24 * 60 * 60); // expires in 7 days
-            cookie.setSecure(true);
-            cookie.setHttpOnly(true);
+//            cookie.setSecure(true);
+//            cookie.setHttpOnly(true);
             cookie.setPath("/");
             response.addCookie(cookie);
 

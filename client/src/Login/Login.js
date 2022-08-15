@@ -6,7 +6,7 @@ import axios from "axios"
 import { useNavigate } from "react-router-dom";
 
 
-const Login = () => {
+const Login = ({loggedIn, setLoggedIn}) => {
 
   let navigate = useNavigate();
 
@@ -20,9 +20,10 @@ const Login = () => {
             password: pass
         }, { withCredentials: true }).then((response) => {
             if (response.data.message) {
-                navigate("../", { replace: true });
+                navigate("/request", { replace: true });
+                setLoggedIn(true);
                 console.log(response.data.message);
-                localStorage.setItem("email", email);
+                console.log(document.cookie)
             }
             else {
                 console.log(response.data);

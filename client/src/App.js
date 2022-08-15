@@ -1,5 +1,5 @@
 import './App.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import Login from './Login/Login.js';
 import Register from './Register/Register';
@@ -15,15 +15,29 @@ import { NextUIProvider } from '@nextui-org/react';
 
 function App() {
 
-  const [loggedIn, setLoggedIn] = useState(true);
+  const [loggedIn, setLoggedIn] = useState();
+
+  useEffect(() => {
+    // console.log(document.cookie)
+    if(document.cookie){
+      setLoggedIn(true)
+    }
+    else{
+      setLoggedIn(false)
+    }
+  
+    
+  }, [loggedIn])
+  
+
 
   return (
     <NextUIProvider>
       <BrowserRouter>
-        <Navbar loggedIn = {loggedIn} setLoggedIn = {setLoggedIn}/>
+        <Navbar loggedIn = {loggedIn} setLoggedIn={setLoggedIn}/>
           <main className='app'>          
               <Routes>
-                <Route path="/login" element={<Login/>}/>
+                <Route path="/login" element={<Login loggedIn = {loggedIn} setLoggedIn={setLoggedIn}/>}/>
                 <Route path="/register" element={<Register/>}/>
                 <Route path="/deptOrders" element={<DeptOrders/>}/>
                 <Route path="/myOrders" element={<MyOrders/>}/>
