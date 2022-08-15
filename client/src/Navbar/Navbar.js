@@ -6,7 +6,7 @@ import axios from "axios"
 import { useEffect } from 'react';
 
 
-const Navbar = ( {loggedIn, setLoggedIn, admin, setAdmin} ) => {
+const Navbar = ( {loggedIn, setLoggedIn, admin, setAdmin, employee, setEmployee} ) => {
 
   let navigate = useNavigate(); 
   
@@ -17,6 +17,7 @@ const Navbar = ( {loggedIn, setLoggedIn, admin, setAdmin} ) => {
       setLoggedIn(false);
       if(admin){
         setAdmin(false);
+        setEmployee(false);
       }
       navigate("/login");
       console.log(response.data);      
@@ -36,9 +37,10 @@ const Navbar = ( {loggedIn, setLoggedIn, admin, setAdmin} ) => {
         </div>  
         :
         <div className="adminNavbarLinks">
-            <Link to="/orderRequests"><b>Pending</b></Link>
-            <Link to="/orders"><b>Active</b></Link>
-            <Link to="/departments"><b>Assign</b></Link>
+            <Link to="/orderRequests"><b>Pending orders</b></Link>
+            <Link to="/orders"><b>Active orders</b></Link>
+            <Link to="/departments"><b>Department tasks</b></Link>
+            <Link to="/createDept"><b>Create department</b></Link>
         </div>
     }
       

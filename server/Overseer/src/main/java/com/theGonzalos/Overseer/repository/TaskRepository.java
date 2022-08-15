@@ -8,4 +8,6 @@ import java.util.List;
 public interface TaskRepository extends JpaRepository<Task, Integer> {
     List<Task> findAllByOrder_ReqIdAndIsDeletedFalse(int reqId);
     List<Task> findAllByEmployee_EmployeeId(int empId);
+    List<Task> findAllByEmployee_EmployeeEmail(String empEmail);
+    List<Task> findAllByEmployee_EmployeeEmailAndTaskStatus(String email, String status);
 }
