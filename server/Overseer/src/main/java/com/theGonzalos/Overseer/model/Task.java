@@ -16,6 +16,8 @@ public class Task {
 
     private String taskStatus;
 
+    private String taskDetails;
+
     private boolean isDeleted;
 
     @JsonFormat(pattern="yyyy-MM-dd")
@@ -83,6 +85,14 @@ public class Task {
 
     public void setDeleted(boolean deleted) {
         isDeleted = deleted;
+    }
+
+    public String getTaskDetails() {
+        return taskDetails;
+    }
+
+    public void setTaskDetails(String taskDetials) {
+        this.taskDetails = taskDetials;
     }
 
 }

@@ -15,11 +15,13 @@ import Navbar from './Navbar/Navbar';
 import Error from './Error/Error';
 import { NextUIProvider } from '@nextui-org/react';
 import Mail from './User/Mail/Mail';
+import EmployeeLogin from './Employee/EmployeeLogin/EmployeeLogin';
 
 function App() {
 
   const [loggedIn, setLoggedIn] = useState();
   const [admin, setAdmin] = useState();
+  const [employee, setEmployee] = useState();
 
   useEffect(() => {
     if(document.cookie){
@@ -51,6 +53,7 @@ function App() {
                 <Route path="/departments" element={<Departments/>}/>
                 <Route path="/login" element={<Login loggedIn = {loggedIn} setLoggedIn={setLoggedIn} setAdmin={setAdmin}/>}/>
                 <Route path="/register" element={<Register/>}/>
+                <Route path="/employeeLogin" element={<EmployeeLogin setLoggedIn={setLoggedIn} setAdmin={setAdmin} setEmployee={setEmployee}/>}/>
                 </>
                 :
                 <>
@@ -65,6 +68,7 @@ function App() {
                 <Route path="/departments" element={<Error/>}/>
                 <Route path="/login" element={<Login loggedIn = {loggedIn} setLoggedIn={setLoggedIn} setAdmin={setAdmin}/>}/>
                 <Route path="/register" element={<Register/>}/>
+                <Route path="/employeeLogin" element={<EmployeeLogin setLoggedIn={setLoggedIn} setAdmin={setAdmin} setEmployee={setEmployee}/>}/>
                 </>
                 }   
               </Routes>          

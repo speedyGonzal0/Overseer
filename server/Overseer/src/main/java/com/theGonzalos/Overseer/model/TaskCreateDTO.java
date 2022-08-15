@@ -9,6 +9,8 @@ public class TaskCreateDTO {
     @JsonFormat(pattern="yyyy-MM-dd")
     private java.sql.Date due;
 
+    private String taskDetails;
+
     private int empID;
 
     public int getReqID() {
@@ -33,6 +35,14 @@ public class TaskCreateDTO {
 
     public void setEmpID(int empID) {
         this.empID = empID;
+    }
+
+    public String getTaskDetails() {
+        return taskDetails;
+    }
+
+    public void setTaskDetails(String taskDetails) {
+        this.taskDetails = taskDetails;
     }
 
 

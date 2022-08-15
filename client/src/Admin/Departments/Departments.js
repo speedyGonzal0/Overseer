@@ -19,7 +19,7 @@ const Departments = () => {
 
   const [deptTasks, setDeptTasks] = useState([])
 
-  const [taskTodos, setTaskTodos] = useState([])
+  // const [taskTodos, setTaskTodos] = useState([])
 
 
   const fetchDeptTasks = (dept) => {
@@ -29,11 +29,11 @@ const Departments = () => {
     })
   }
 
-  const fetchTaskTodos = (taskID) => {
-    axios.get(`http://localhost:8080/todo/task/${taskID}`).then((response) => {
-      setTaskTodos(response.data)
-    })
-  }
+  // const fetchTaskTodos = (taskID) => {
+  //   axios.get(`http://localhost:8080/todo/task/${taskID}`).then((response) => {
+  //     setTaskTodos(response.data)
+  //   })
+  // }
 
   return (
     <main className="deptContainer">
@@ -59,11 +59,12 @@ const Departments = () => {
             <Collapse.Group splitted>
               {deptTasks.map(task => (
 
-                <Collapse key={task.taskId} title={task.taskId} subtitle={`Under order id #${task.order.reqId}`} onClick={() => fetchTaskTodos(task.taskId)}>
-                  <h4>{task.taskStatus}</h4>
-                  {taskTodos.map(todo => (
+                <Collapse key={task.taskId} title={task.taskId} subtitle={`Under order id #${task.order.reqId}`}>
+                  <h3>{task.taskStatus}</h3>
+                  <p>{task.taskDetails}</p>
+                  {/* {taskTodos.map(todo => (
                     <li key={todo.todoID}>{todo.todoDetails}</li>
-                  ))}
+                  ))} */}
                 </Collapse>
               ))}
 
