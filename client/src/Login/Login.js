@@ -4,6 +4,8 @@ import { Input, Button, Link } from '@nextui-org/react';
 import { useState } from 'react';
 import axios from "axios"
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const Login = ({loggedIn, setLoggedIn, setAdmin}) => {
@@ -12,6 +14,18 @@ const Login = ({loggedIn, setLoggedIn, setAdmin}) => {
 
   const [email, setEmail] = useState()
   const [pass, setPass] = useState()
+
+  const loginNotify = () => {
+     toast.error('Login unsuccessful', {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      })
+    }
 
   const submitLogin = (event) => {
     event.preventDefault();
@@ -30,11 +44,11 @@ const Login = ({loggedIn, setLoggedIn, setAdmin}) => {
               }
               setLoggedIn(true);
                 
-                // if(response.data.role == "Admin") { setAdmin(true) }
                 console.log(response.data.role);
                 console.log(document.cookie)
             }
             else {
+                loginNotify()
                 console.log(response.data);
             }
         });
@@ -53,11 +67,12 @@ const Login = ({loggedIn, setLoggedIn, setAdmin}) => {
             onChange={(e) => {
             setPass(e.target.value);
           }}/>
-        <Button type="submit" shadow color="primary">Submit</Button>
+        <Button type="submit" shadow color="primary" onClick={loginNotify}>Submit</Button>
       </form>
       <Link block color="primary" href="http://localhost:3000/register">
         Create an account
       </Link>
+      <ToastContainer/>
     </main>
   )
 }

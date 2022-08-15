@@ -3,15 +3,37 @@ import "./Register.css"
 import { Input, Button, Link } from '@nextui-org/react';
 import { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Register = () => {
-
-  let navigate = useNavigate();
 
     const [name, setName] = useState()
     const [email, setEmail] = useState()
     const [pass, setPass] = useState()
+    const [regSuccess, setRegSuccess] = useState()
+
+    const regNotify = () => {regSuccess?
+        toast.success('Registration successful', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          })
+        : 
+        toast.error('Registration unsuccessful', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          })
+    };
   
     const submitReg = (event) => {
       event.preventDefault();
@@ -21,10 +43,12 @@ const Register = () => {
             pass: pass
         }).then((response) => {
             if (response.data.message) {
-                navigate("../login", { replace: true });
+                setRegSuccess(true)
+                // navigate("../login", { replace: true });
                 console.log(response.data.message);
             }
             else {
+                setRegSuccess(false)
                 console.log(response.data);
             }
         });
@@ -39,7 +63,7 @@ const Register = () => {
               onChange={(e) => {
               setName(e.target.value);
             }}/>
-        <Input labelPlaceholder="Email" required 
+        <Input labelPlaceholder="Email" required type="email"
               onChange={(e) => {
               setEmail(e.target.value);
             }}/>
@@ -47,11 +71,12 @@ const Register = () => {
             onChange={(e) => {
             setPass(e.target.value);
           }}/>
-        <Button type="submit" shadow color="primary">Submit</Button>
+        <Button type="submit" shadow color="primary" onClick={regNotify}>Submit</Button>
       </form>
       <Link block color="primary" href="http://localhost:3000/login">
         Already have an account
       </Link>
+      <ToastContainer/>
     </main>
   )
 }

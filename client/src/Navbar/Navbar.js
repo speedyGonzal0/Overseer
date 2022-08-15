@@ -3,11 +3,12 @@ import "./Navbar.css"
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from '@nextui-org/react';
 import axios from "axios"
+import { useEffect } from 'react';
 
 
 const Navbar = ( {loggedIn, setLoggedIn, admin, setAdmin} ) => {
 
-  let navigate = useNavigate();
+  let navigate = useNavigate(); 
   
 
   const submitLogout = (event) => {
@@ -49,7 +50,6 @@ const Navbar = ( {loggedIn, setLoggedIn, admin, setAdmin} ) => {
           </div>
           :
           <div className="navbarLoggedIn">
-            <p>User name</p>
             <Button onClick={submitLogout}>Log out</Button>
           </div>
 
