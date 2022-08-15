@@ -11,10 +11,10 @@ const Orders = () => {
     const [action, setAction] = useState("all")
 
     const myorders = [
-        {orderid: 1, title: "abc", quantity: 1000, product: "Sweater", material: "Nylon", size: "M", price: 40, colorCode: "#A7Dh23", due: "10-Aug-2022", status: "Completed", description: "dasdhaskjdhjwkjhiudwahdaksjdhjksa dhaskjdh jksahdjkhsakj Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum hdlkjash"},
-        {orderid: 2, title: "abc", quantity: 100, product: "Cardigan", material: "Nylon", size: "M", price: 40, colorCode: "#A7Dh23", due: "10-Aug-2022",status: "Canceled", description: "dasdhaskjdhjwkjhiudwahdaksjdhjksa dhaskjdh jksahdjkhsakj Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum hdlkjash"},
-        {orderid: 3, title: "abc", quantity: 1000, product: "Sweater", material: "Nylon", size: "M", price: 40, colorCode: "#A7Dh23", due: "10-Aug-2022", status: "Processing", description: "dasdhaskjdhjwkjhiudwahdaksjdhjksa dhaskjdh jksahdjkhsakj Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum hdlkjash"},
-        {orderid: 4, title: "abc", quantity: 100, product: "Cardigan", material: "Nylon", size: "M", price: 40, colorCode: "#A7Dh23", due: "10-Aug-2022",status: "Canceled", description: "dasdhaskjdhjwkjhiudwahdaksjdhjksa dhaskjdh jksahdjkhsakj Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum hdlkjash"}
+        {orderid: 1, title: "abc", quantity: 1000, product: "Sweater", material: "Nylon", size: "M", price: 25, colorCode: "#A7Dh23", due: "10-Aug-2022", status: "Completed", description: "dasdhaskjdhjwkjhiudwahdaksjdhjksa dhaskjdh jksahdjkhsakj Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum hdlkjash"},
+        {orderid: 2, title: "abc", quantity: 100, product: "Cardigan", material: "Nylon", size: "M", price: 10, colorCode: "#A7Dh23", due: "10-Aug-2022",status: "Canceled", description: "dasdhaskjdhjwkjhiudwahdaksjdhjksa dhaskjdh jksahdjkhsakj Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum hdlkjash"},
+        {orderid: 3, title: "abc", quantity: 5000, product: "Sweater", material: "Nylon", size: "M", price: 22, colorCode: "#A7Dh23", due: "10-Aug-2022", status: "Processing", description: "dasdhaskjdhjwkjhiudwahdaksjdhjksa dhaskjdh jksahdjkhsakj Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum hdlkjash"},
+        {orderid: 4, title: "abc", quantity: 40, product: "Cardigan", material: "Nylon", size: "M", price: 40, colorCode: "#A7Dh23", due: "10-Aug-2022",status: "Canceled", description: "dasdhaskjdhjwkjhiudwahdaksjdhjksa dhaskjdh jksahdjkhsakj Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum hdlkjash"}
       ]
 
     let orders = myorders.filter((order) => {
@@ -29,9 +29,17 @@ const Orders = () => {
         }
     })
 
+    if(action === 'cost'){
+        orders = myorders.sort((a, b) => (a.price * a.quantity < b.price * b.quantity) ? 1 : -1)
+    } else if(action === 'quantity'){
+        orders = myorders.sort((a, b) => (a.quantity < b.quantity) ? 1 : -1)
+    }
+
   return (
     <main className='ordersContainer'>
-        <Grid.Container gap={2} className="ordersGrid">
+        <div className="ordersGrid">
+        <h5>Filter</h5>
+        <Grid.Container gap={2} className="ordersGridContainer">
             <Grid>
                 <Button color="primary" shadow onClick={() => setAction("all")}>All</Button>
             </Grid>
@@ -45,6 +53,16 @@ const Orders = () => {
                 <Button color="primary" shadow onClick={() => setAction("canceled")}>Canceled</Button>
             </Grid>
         </Grid.Container>
+        <h5>Sort</h5>
+        <Grid.Container gap={2} className="ordersGridContainer">
+            <Grid>
+                <Button color="primary" shadow onClick={() => setAction("cost")}>Cost</Button>
+            </Grid>
+            <Grid>
+                <Button color="primary" shadow onClick={() => setAction("quantity")}>Quantity</Button>
+            </Grid>
+        </Grid.Container>
+        </div>
         <div className="ordersCardContainer">
             {orders.map((order) => (
                 <Card isPressable isHoverable variant="bordered" className='orderCard' key={order.orderid}>
