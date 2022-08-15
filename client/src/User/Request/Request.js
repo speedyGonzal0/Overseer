@@ -10,7 +10,6 @@ const Request = () => {
     let navigate = useNavigate();
 
     const [costPerProduct, setcostPerProduct] = useState(0)
-    const [totalCost, settotalCost] = useState(0)
     const [date, setDate] = useState()
     const [product, setProduct] = useState(" ")
     const [material, setMaterial] = useState(" ")
@@ -21,8 +20,6 @@ const Request = () => {
     const [title, setTitle] = useState(" ")
     const [helperText, setHelperText] = useState(" ")
     const [disabled, setDisabled] = useState(true)
-    const [pIndex, setpIndex] = useState()
-    const [mIndex, setmIndex] = useState()
 
 
     const quantityHandler = (e) => {
@@ -38,34 +35,18 @@ const Request = () => {
         }
     }
 
-    // const productPrices = [{"T-shirt":100}, {"Hoodie":200}, {"Sweater":250}, {"Cardigan":400}]
-    // const materialPrices = [10, 50, 30, 40]
-
     const productPrices = [{name: "T-shirt", price:100}, {name: "Hoodie", price:200}, {name: "Sweater", price:250}, {name: "Cardigan", price:400}]
     const materialPrices = [{material: "Cotton", price: 10}, {material: "Denim", price: 50}, {material: "Polyester", price:30}, {material: "Nylon", price: 40}]
 
     const priceCalculator = () => {
-        // console.log(product)
-        // console.log(material)
-        // console.log(quantity)
-        // let a = product
-        // console.log(productPrices.)
-        // switch(product){
-        //     case "T-Shirt": console.log("T-shirt"); break;
-        //     case "Hoodie": console.log("Hoodie"); break;
-        //     default: console.log("here")
-        // }
+
        let tempProduct =  productPrices.filter( item => {
             if(item.name === product) {return item.price}
         })
         let tempMat =  materialPrices.filter( item => {
             if(item.material === material) {return item.price}
         })
-       setcostPerProduct(tempProduct[0].price + tempMat[0].price)
-    //    console.log(costPerProduct)
-    //    console.log(quantity)
-    // //    settotalCost(costPerProduct)
-        
+       setcostPerProduct(tempProduct[0].price + tempMat[0].price)        
     }
 
     const handleSubmit = (event) => {
@@ -77,6 +58,7 @@ const Request = () => {
             reqItemSize: size,
             reqItemColor: color,
             reqItemQuantity: quantity,
+            reqItemMaterial: material,
             reqDesc: description,
             reqDate: date,
             reqCost: cost

@@ -23,6 +23,8 @@ public class Orders {
 
     private String reqItemColor;
 
+    private String reqItemMaterial;
+
     private int reqItemQuantity;
 
     private String reqDesc;
@@ -143,5 +145,13 @@ public class Orders {
 
     public void setReqItemQuantity(int reqItemQuantity) {
         this.reqItemQuantity = reqItemQuantity;
+    }
+
+    public String getReqItemMaterial() {
+        return reqItemMaterial;
+    }
+
+    public void setReqItemMaterial(String reqItemMaterial) {
+        this.reqItemMaterial = reqItemMaterial;
     }
 }
