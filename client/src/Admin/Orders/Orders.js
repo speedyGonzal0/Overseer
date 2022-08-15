@@ -2,37 +2,42 @@ import React from 'react'
 import "./Orders.css"
 import { Button, Grid, Card } from "@nextui-org/react";
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
+import axios from "axios"
 
 const Orders = () => {
 
     let navigate = useNavigate();
 
     const [action, setAction] = useState("all")
+    const [allorders, setAllOrders] = useState([])
+    let orders;
 
-    const myorders = [
-        {orderid: 1, title: "abc", quantity: 1000, product: "Sweater", material: "Nylon", size: "M", price: 25, colorCode: "#A7Dh23", due: "10-Aug-2022", status: "Completed", description: "dasdhaskjdhjwkjhiudwahdaksjdhjksa dhaskjdh jksahdjkhsakj Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum hdlkjash"},
-        {orderid: 2, title: "abc", quantity: 100, product: "Cardigan", material: "Nylon", size: "M", price: 10, colorCode: "#A7Dh23", due: "10-Aug-2022",status: "Canceled", description: "dasdhaskjdhjwkjhiudwahdaksjdhjksa dhaskjdh jksahdjkhsakj Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum hdlkjash"},
-        {orderid: 3, title: "abc", quantity: 5000, product: "Sweater", material: "Nylon", size: "M", price: 22, colorCode: "#A7Dh23", due: "10-Aug-2022", status: "Processing", description: "dasdhaskjdhjwkjhiudwahdaksjdhjksa dhaskjdh jksahdjkhsakj Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum hdlkjash"},
-        {orderid: 4, title: "abc", quantity: 40, product: "Cardigan", material: "Nylon", size: "M", price: 40, colorCode: "#A7Dh23", due: "10-Aug-2022",status: "Canceled", description: "dasdhaskjdhjwkjhiudwahdaksjdhjksa dhaskjdh jksahdjkhsakj Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum hdlkjash"}
-      ]
+      useEffect(() => {
+         axios.get("http://localhost:8080/orders/all").then((response) => {
+            console.log(response.data)
+            setAllOrders(response.data.filter(data => {
+                return data.reqStatus !== "Approved" && data.reqStatus !== "Pending";
+            }))
+        })})
+   
 
-    let orders = myorders.filter((order) => {
+    orders = allorders.filter((order) => {
         if(action === 'all'){
             return order;
         } else if (action === 'processing'){
-            return order.status === "Processing"
+            return order.reqStatus === "Processing"
         } else if (action === 'completed'){
-            return order.status === "Completed"
-        } else{
-            return order.status === "Canceled"
+            return order.reqStatus === "Completed"
+        } else if (action === 'canceled'){
+            return order.reqStatus === "Canceled"
         }
     })
 
     if(action === 'cost'){
-        orders = myorders.sort((a, b) => (a.price * a.quantity < b.price * b.quantity) ? 1 : -1)
+        orders = allorders.sort((a, b) => ( (a.reqCost * a.reqItemQuantity) < (b.reqCost * b.reqItemQuantity) ) ? 1 : -1)
     } else if(action === 'quantity'){
-        orders = myorders.sort((a, b) => (a.quantity < b.quantity) ? 1 : -1)
+        orders = allorders.sort((a, b) => (a.reqItemQuantity < b.reqItemQuantity) ? 1 : -1)
     }
 
   return (
@@ -66,20 +71,20 @@ const Orders = () => {
         </div>
         <div className="ordersCardContainer">
             {orders.map((order) => (
-                <Card isPressable isHoverable variant="bordered" className='orderCard' key={order.orderid}>
-                    <Card.Body onClick={ () => navigate(`/myOrders/${order.orderid}`)}>
-                        <h3>Order #{order.orderid}</h3>
+                <Card isPressable isHoverable variant="bordered" className='orderCard' key={order.reqId}>
+                    <Card.Body onClick={ () => navigate(`/myOrders/${order.reqId}`)}>
+                        <h3>Order #{order.reqId}</h3>
                         <div className='orderBody'>
-                            <p>Product: {order.product}</p>
-                            <p>Due: {order.due} </p>
-                            <p>Quantity: {order.quantity} BDT</p>
-                            <p>Cost/Item: {order.price} BDT</p>
+                            <p>Product: {order.reqItem}</p>
+                            <p>Due: {order.reqDate} </p>
+                            <p>Quantity: {order.reqItemQuantity}</p>
+                            <p>Cost/Item: {order.reqCost/order.reqItemQuantity} BDT</p>
                         </div>
                         <div className='orderBody'>
-                            <p>Material: {order.material} </p>
-                            <p>Size: {order.size}</p>
-                            <p>Color: {order.colorCode}</p>
-                            <p>Total Cost: {order.price * order.quantity} BDT</p>
+                            <p>Material: {order.reqItemMaterial} </p>
+                            <p>Size: {order.reqItemSize}</p>
+                            <p>Color: {order.reqItemColor}</p>
+                            <p>Total Cost: {order.reqCost} BDT</p>
                         </div>
                     </Card.Body>
                 </Card>

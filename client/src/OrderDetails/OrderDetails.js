@@ -2,20 +2,26 @@ import React from 'react'
 import "./OrderDetails.css"
 import { useParams } from 'react-router-dom'
 import { Card, Table, Progress } from "@nextui-org/react";
+import { useState, useEffect } from 'react';
+import axios from "axios"
 
 const OrderDetails = () => {
 
     const {id} = useParams();
-    const myOrders = [
-        {orderid: 1, title: "abc", quantity: 1000, product:"Sweater", material: "Nylon", size: "M", price: 40, colorCode: "#A7Dh23", due: "10/07/2022", status: "Accepted", description: "dasdhaskjdhjwkjhiudwahdaksjdhjksa dhaskjdh jksahdjkhsakj Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum hdlkjash"},
-        {orderid: 2, title: "abc", quantity: 100, product:"Sweater", material: "Nylon", size: "M", price: 40, colorCode: "#A7Dh23", due: "10/07/2022",status: "Accepted", description: "dasdhaskjdhjwkjhiudwahdaksjdhjksa dhaskjdh jksahdjkhsakj Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum hdlkjash"}
-      ]
+
+    const [order, setOrder] = useState({})
+
+    useEffect(() => {
+      axios.get(`http://localhost:8080/orders/${id}`).then((response) => {
+      setOrder(response.data);
+    });
+    }, [id])
+    
 
   return (
     <main className="orderDetailsContainer">
-      {myOrders.filter(order => order.orderid == id).map(filteredorder => (
-        <div className='orderDetailsBody' key={filteredorder.orderid}>
-          <h1>{filteredorder.title}</h1>
+        <div className='orderDetailsBody'>
+        <h1>{order.reqTitle}</h1>
           <div className="progress">
             <label>Progress</label>
             <Progress color="primary" value={25} />
@@ -35,26 +41,25 @@ const OrderDetails = () => {
               </Table.Header>
               <Table.Body>
                 <Table.Row key="1">
-                  <Table.Cell>{filteredorder.orderid}</Table.Cell>
-                  <Table.Cell>{filteredorder.product}</Table.Cell>
-                  <Table.Cell>{filteredorder.quantity}</Table.Cell>
-                  <Table.Cell>{filteredorder.material}</Table.Cell>
-                  <Table.Cell>{filteredorder.size}</Table.Cell>
-                  <Table.Cell>{filteredorder.price * filteredorder.quantity}</Table.Cell>
-                  <Table.Cell>{filteredorder.colorCode}</Table.Cell>
-                  <Table.Cell>{filteredorder.due}</Table.Cell>
-                  <Table.Cell>{filteredorder.status}</Table.Cell>
+                  <Table.Cell>{order.reqId}</Table.Cell>
+                  <Table.Cell>{order.reqItem}</Table.Cell>
+                  <Table.Cell>{order.reqItemQuantity}</Table.Cell>
+                  <Table.Cell>{order.reqItemMaterial}</Table.Cell>
+                  <Table.Cell>{order.reqItemSize}</Table.Cell>
+                  <Table.Cell>{order.reqCost}</Table.Cell>
+                  <Table.Cell>{order.reqItemColor}</Table.Cell>
+                  <Table.Cell>{order.reqDate}</Table.Cell>
+                  <Table.Cell>{order.reqStatus}</Table.Cell>
                 </Table.Row>
               </Table.Body>
             </Table>
           </div>
           <Card>
             <Card.Body>
-              <p>{filteredorder.description}</p>
+              <p>{order.reqDesc}</p>
             </Card.Body>
           </Card>
         </div>
-      ))}
     </main>
   )
 }
