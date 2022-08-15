@@ -3,6 +3,7 @@ package com.theGonzalos.Overseer.controller;
 import com.theGonzalos.Overseer.model.Orders;
 import com.theGonzalos.Overseer.service.OrdersService;
 import com.theGonzalos.Overseer.service.UserService;
+import org.aspectj.weaver.ast.Or;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -49,6 +50,13 @@ public class OrdersController {
         }catch (NoSuchElementException e){
             return new ResponseEntity<Orders>(HttpStatus.NOT_FOUND);
         }
+    }
+
+    @GetMapping("/user")
+    public List<Orders> getUserOrders(HttpServletRequest request){
+        Cookie[] cookies = request.getCookies();
+        String userEmail = cookies[0].getValue();
+        return ordersService.getOrdersOfUser(userEmail);
     }
 
     @PutMapping("/{id}")

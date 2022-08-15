@@ -38,6 +38,8 @@ public class OrdersService {
         return ordersRepository.findById(reqId).get();
     }
 
+    public List<Orders> getOrdersOfUser(String email){ return ordersRepository.findAllByUserId_Email(email); }
+
     public void deleteRequest(Integer reqId){
         ordersRepository.deleteById(reqId);
     }
