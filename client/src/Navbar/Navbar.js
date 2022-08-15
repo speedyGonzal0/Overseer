@@ -5,7 +5,7 @@ import { Button } from '@nextui-org/react';
 import axios from "axios"
 
 
-const Navbar = ( {loggedIn, setLoggedIn} ) => {
+const Navbar = ( {loggedIn, setLoggedIn, admin, setAdmin} ) => {
 
   let navigate = useNavigate();
   
@@ -14,9 +14,11 @@ const Navbar = ( {loggedIn, setLoggedIn} ) => {
     event.preventDefault();
     axios.get("http://localhost:8080/user/signout", {withCredentials : true}).then((response) => {
       setLoggedIn(false);
+      if(admin){
+        setAdmin(false);
+      }
       navigate("/login");
-      console.log(response.data);
-      
+      console.log(response.data);      
     });  
   }
 
@@ -25,11 +27,20 @@ const Navbar = ( {loggedIn, setLoggedIn} ) => {
       <div className="navbarLogo">
         <h2>Overseer</h2>
       </div>
-      <div className="navbarLinks">
-        <Link to="/"> <b>Home</b> </Link>
-        <Link to="/request"> <b>Place Order</b> </Link>
-        <Link to="/myOrders"> <b>My Orders</b> </Link>
-      </div>
+      {!admin ? 
+        <div className="navbarLinks">
+          <Link to="/"> <b>Home</b> </Link>
+          <Link to="/request"> <b>Place Order</b> </Link>
+          <Link to="/myOrders"> <b>My Orders</b> </Link>
+        </div>  
+        :
+        <div className="adminNavbarLinks">
+            <Link to="/orderRequests"><b>Pending</b></Link>
+            <Link to="/orders"><b>Active</b></Link>
+            <Link to="/departments"><b>Assign</b></Link>
+        </div>
+    }
+      
       { !loggedIn ? 
           <div className="navbarLogin">
             <Button onClick={()=> navigate("/register")}>Register</Button>

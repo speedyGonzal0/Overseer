@@ -5,8 +5,13 @@
     height: 7vh;
     position: sticky;
     align-items: center;
+    flex-shrink: 0;
 }
 
+
+.navbarContainer h1,h2{
+    margin: 0;
+}
 
 .navbarLogo{
     display: flex;
@@ -23,6 +28,17 @@
 }
 
 .navbarLinks{
+    display: flex;
+    flex: 5;
+    align-items: center;
+    justify-content: center;
+    /* justify-content: space-between; */
+    /* background-color: pink; */
+    height: 100%;
+    gap: 8%;
+}
+
+.adminNavbarLinks{
     display: flex;
     flex: 5;
     align-items: center;

@@ -6,7 +6,7 @@ import axios from "axios"
 import { useNavigate } from "react-router-dom";
 
 
-const Login = ({loggedIn, setLoggedIn}) => {
+const Login = ({loggedIn, setLoggedIn, setAdmin}) => {
 
   let navigate = useNavigate();
 
@@ -19,10 +19,19 @@ const Login = ({loggedIn, setLoggedIn}) => {
             email: email,
             password: pass
         }, { withCredentials: true }).then((response) => {
-            if (response.data.message) {
+            if (response.data.role) {
+              if(response.data.role === "Client"){
+                setAdmin(false)
                 navigate("/request", { replace: true });
-                setLoggedIn(true);
-                console.log(response.data.message);
+              }
+              else if(response.data.role === "Admin"){
+                setAdmin(true)
+                navigate("/orderRequests")
+              }
+              setLoggedIn(true);
+                
+                // if(response.data.role == "Admin") { setAdmin(true) }
+                console.log(response.data.role);
                 console.log(document.cookie)
             }
             else {

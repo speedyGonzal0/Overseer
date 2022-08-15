@@ -50,6 +50,7 @@ public class TaskController {
 
         Task newTask = new Task();
         newTask.setOrder(request);
+        request.setReqStatus("Processing");
         newTask.setEmployee(employee);
         newTask.setDue(task.getDue());
         newTask.setTaskStatus("Pending");

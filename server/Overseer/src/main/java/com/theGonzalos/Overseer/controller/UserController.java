@@ -88,7 +88,8 @@ public class UserController {
             response.addCookie(cookie);
 
             JSONObject resp = new JSONObject();
-            resp.put("message","User login successful");
+//            resp.put("message","User login successful");
+            resp.put("role", user.getRole());
             return new ResponseEntity<>(resp.toString(), HttpStatus.OK);
         }else {
             JSONObject resp = new JSONObject();
@@ -119,19 +120,11 @@ public class UserController {
         }
     }
 
-    @GetMapping("/role")
-    public ResponseEntity<?> getUserRole(@RequestBody LoginRequestDTO loginRequestDTO, HttpServletResponse response){
-        try {
-            User user = userService.getUser(loginRequestDTO.getEmail());
-            JSONObject resp = new JSONObject();
-            resp.put("Role", user.getRole());
-            return new ResponseEntity<>(resp.toString(), HttpStatus.OK);
-        }
-        catch (Exception e){
-            JSONObject resp = new JSONObject();
-            resp.put("message", "User does not exist");
-            return new ResponseEntity<>(resp.toString(), HttpStatus.NOT_FOUND);
-        }
+    @GetMapping("/details")
+    public User getUserDetails(HttpServletRequest request, HttpServletResponse response){
+        Cookie[] cookies = request.getCookies();
+        String userEmail = cookies[0].getValue();
+        return userService.getUser(userEmail);
     }
 
     @PutMapping("/{id}")
