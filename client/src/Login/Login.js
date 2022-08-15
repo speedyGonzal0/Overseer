@@ -2,24 +2,40 @@ import React from 'react'
 import './Login.css'
 import { Input, Button, Link } from '@nextui-org/react';
 import { useState } from 'react';
+import axios from "axios"
+import { useNavigate } from "react-router-dom";
 
 
 const Login = () => {
+
+  let navigate = useNavigate();
 
   const [email, setEmail] = useState()
   const [pass, setPass] = useState()
 
   const submitLogin = (event) => {
-    console.log({email})
-    console.log({pass})
     event.preventDefault();
+      axios.post("http://localhost:8080/user/signin", {
+            email: email,
+            password: pass
+        }, { withCredentials: true }).then((response) => {
+            if (response.data.message) {
+                navigate("../", { replace: true });
+                console.log(response.data.message);
+                localStorage.setItem("email", email);
+            }
+            else {
+                console.log(response.data);
+            }
+        });
+        event.target.reset();
   }
 
   return (
     <main className='loginMain'>
       <h1>Login</h1>
       <form onSubmit={submitLogin} className="loginForm">
-        <Input type="email" labelPlaceholder="Email" required
+        <Input  labelPlaceholder="Email" required
               onChange={(e) => {
               setEmail(e.target.value);
             }}/>

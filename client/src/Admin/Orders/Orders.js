@@ -37,6 +37,7 @@ const Orders = () => {
 
   return (
     <main className='ordersContainer'>
+        <h1>Orders</h1>
         <div className="ordersGrid">
         <h5>Filter</h5>
         <Grid.Container gap={2} className="ordersGridContainer">

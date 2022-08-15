@@ -10,25 +10,32 @@ import OrderRequests from './Admin/OrderRequests/OrderRequests';
 import Orders from './Admin/Orders/Orders';
 import Departments from './Admin/Departments/Departments';
 import Navbar from './Navbar/Navbar';
+import { NextUIProvider } from '@nextui-org/react';
+import { useState } from 'react';
 
 function App() {
+
+  const [loggedIn, setLoggedIn] = useState(false)
+
   return (
-    <main className='app'>
-      <Navbar/>
+    <NextUIProvider>
       <BrowserRouter>
-        <Routes>
-          <Route path="/login" element={<Login/>}/>
-          <Route path="/register" element={<Register/>}/>
-          <Route path="/deptOrders" element={<DeptOrders/>}/>
-          <Route path="/myOrders" element={<MyOrders/>}/>
-          <Route path="/myOrders/:id" element={<OrderDetails/>}/>
-          <Route path="/request" element={<Request/>}/>
-          <Route path="/orderRequests" element={<OrderRequests/>}/>
-          <Route path="/orders" element={<Orders/>}/>
-          <Route path="/departments" element={<Departments/>}/>
-        </Routes>
+        <Navbar loggedIn = {loggedIn} setLoggedIn = {setLoggedIn}/>
+          <main className='app'>          
+              <Routes>
+                <Route path="/login" element={<Login/>}/>
+                <Route path="/register" element={<Register/>}/>
+                <Route path="/deptOrders" element={<DeptOrders/>}/>
+                <Route path="/myOrders" element={<MyOrders/>}/>
+                <Route path="/myOrders/:id" element={<OrderDetails/>}/>
+                <Route path="/request" element={<Request/>}/>
+                <Route path="/orderRequests" element={<OrderRequests/>}/>
+                <Route path="/orders" element={<Orders/>}/>
+                <Route path="/departments" element={<Departments/>}/>
+              </Routes>          
+          </main>
       </BrowserRouter>
-    </main>
+    </NextUIProvider>
   );
 }
 
