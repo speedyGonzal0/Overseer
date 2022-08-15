@@ -39,14 +39,14 @@ const Request = () => {
     const materialPrices = [{material: "Cotton", price: 10}, {material: "Denim", price: 50}, {material: "Polyester", price:30}, {material: "Nylon", price: 40}]
 
     const priceCalculator = () => {
+
        let tempProduct =  productPrices.filter( item => {
             if(item.name === product) {return item.price}
         })
         let tempMat =  materialPrices.filter( item => {
             if(item.material === material) {return item.price}
         })
-       setcostPerProduct(tempProduct[0].price + tempMat[0].price)
-        
+       setcostPerProduct(tempProduct[0].price + tempMat[0].price)        
     }
 
     const handleSubmit = (event) => {
@@ -58,6 +58,7 @@ const Request = () => {
             reqItemSize: size,
             reqItemColor: color,
             reqItemQuantity: quantity,
+            reqItemMaterial: material,
             reqDesc: description,
             reqDate: date,
             reqCost: cost
