@@ -1,7 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
 * {
   margin: 0;
-  font-family: "Quicksand";
   color: #333;
+}
+
+html, body{
+  scroll-behavior: smooth;
 }
 
 .app{
@@ -9,5 +14,31 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: 93vh;
 }  
+
+h1, h2{
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  margin: 1% 0 1% 0;
+}
+
+h3{
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+}
+
+p{
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+}
+
+::-webkit-scrollbar{
+  width: 0.5vw;
+}
+
+
+::-webkit-scrollbar-thumb{
+  background-color: #b4b4b4;
+  border-radius: 10px;
+}
