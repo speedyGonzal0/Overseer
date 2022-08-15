@@ -19,12 +19,12 @@ const Orders = () => {
             setAllOrders(response.data.filter(data => {
                 return data.reqStatus !== "Approved" && data.reqStatus !== "Pending";
             }))
-        })})
+        })},[])
    
 
     orders = allorders.filter((order) => {
         if(action === 'all'){
-            return order;
+            return allorders;
         } else if (action === 'processing'){
             return order.reqStatus === "Processing"
         } else if (action === 'completed'){

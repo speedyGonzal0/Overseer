@@ -31,6 +31,8 @@ public class TaskService {
 
     public List<Task> getTasksByEmpId(Integer empId){ return taskRepository.findAllByEmployee_EmployeeId(empId); }
 
+    public List<Task> getTasksByEmpEmailAndStatus(String empEmail, String status) { return taskRepository.findAllByEmployee_EmployeeEmailAndTaskStatus(empEmail, status); }
+
     public void deleteTask(Integer taskID){
         taskRepository.deleteById(taskID);
     }

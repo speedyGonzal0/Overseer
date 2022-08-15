@@ -99,6 +99,7 @@ public class TaskController {
         try {
             Task task = taskService.getTaskByID(taskID);
             task.setTaskStatus("Completed");
+            taskService.setTask(task);
             JSONObject resp = new JSONObject();
             resp.put("message","Marked task as done");
             return new ResponseEntity<>(resp.toString(), HttpStatus.OK);

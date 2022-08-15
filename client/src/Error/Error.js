@@ -9,9 +9,9 @@ const Error = () => {
 
   return (
     <main className='errorContainer'>
-        <h1>ERROR: 101</h1>
+        <h1>ERROR: 401</h1>
         <h3>Authorization Required</h3>
-        <Button onClick={ () => navigate("/login")}>Sign In</Button>
+        <Button onClick={ () => navigate("/login")}>Log In</Button>
     </main>
   )
 }

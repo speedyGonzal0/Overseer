@@ -14,11 +14,14 @@ import Departments from './Admin/Departments/Departments';
 import Navbar from './Navbar/Navbar';
 import Error from './Error/Error';
 import { NextUIProvider } from '@nextui-org/react';
+import CreateDept from './Admin/CreateDept/CreateDept';
+import EmployeeLogin from './Employee/EmployeeLogin/EmployeeLogin';
 
 function App() {
 
   const [loggedIn, setLoggedIn] = useState();
   const [admin, setAdmin] = useState();
+  const [employee, setEmployee] = useState();
 
   useEffect(() => {
     if(document.cookie){
@@ -34,7 +37,7 @@ function App() {
   return (
     <NextUIProvider>
       <BrowserRouter>
-        <Navbar loggedIn = {loggedIn} setLoggedIn={setLoggedIn} admin = {admin} setAdmin = {setAdmin}/>
+        <Navbar loggedIn = {loggedIn} setLoggedIn={setLoggedIn} admin = {admin} setAdmin = {setAdmin} employee={employee} setEmployee={setEmployee}/>
           <main className='app'>          
               <Routes>
                 {loggedIn? 
@@ -42,13 +45,15 @@ function App() {
                 <Route path="/" element={<Home/>}/>
                 <Route path="/deptOrders" element={<DeptOrders/>}/>
                 <Route path="/myOrders" element={<MyOrders/>}/>
-                <Route path="/myOrders/:id" element={<OrderDetails/>}/>
+                <Route path="/myOrders/:id" element={<OrderDetails admin = {admin}/>}/>
                 <Route path="/request" element={<Request/>}/>
                 <Route path="/orderRequests" element={<OrderRequests/>}/>
                 <Route path="/orders" element={<Orders/>}/>
                 <Route path="/departments" element={<Departments/>}/>
                 <Route path="/login" element={<Login loggedIn = {loggedIn} setLoggedIn={setLoggedIn} setAdmin={setAdmin}/>}/>
                 <Route path="/register" element={<Register/>}/>
+                <Route path='/createDept' element={<CreateDept/>} />
+                <Route path='/employeeLogin' element={<EmployeeLogin setLoggedIn={setLoggedIn} setAdmin={setAdmin} setEmployee={setEmployee}/>} />
                 </>
                 :
                 <>
@@ -62,6 +67,7 @@ function App() {
                 <Route path="/departments" element={<Error/>}/>
                 <Route path="/login" element={<Login loggedIn = {loggedIn} setLoggedIn={setLoggedIn} setAdmin={setAdmin}/>}/>
                 <Route path="/register" element={<Register/>}/>
+                <Route path='/employeeLogin' element={<EmployeeLogin setLoggedIn={setLoggedIn} setAdmin={setAdmin} setEmployee={setEmployee}/>} />
                 </>
                 }   
               </Routes>          

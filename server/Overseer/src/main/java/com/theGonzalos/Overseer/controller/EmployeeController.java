@@ -67,7 +67,7 @@ public class EmployeeController {
         response.addCookie(cookie);
 
         JSONObject resp = new JSONObject();
-        resp.put("message","Employee login successful");
+        resp.put("role","Employee");
         return new ResponseEntity<>(resp.toString(), HttpStatus.OK);
     }
 
@@ -106,6 +106,13 @@ public class EmployeeController {
     @GetMapping("/tasks/{empID}")
     public List<Task> getTasksOfEmployee(@PathVariable Integer empID){
         return taskService.getTasksByEmpId(empID);
+    }
+
+    @GetMapping("/tasks")
+    public List<Task> getTasksOfEmployeeByEmail(HttpServletRequest request, HttpServletResponse response){
+        Cookie[] cookies = request.getCookies();
+        String empEmail = cookies[0].getValue();
+        return taskService.getTasksByEmpEmailAndStatus(empEmail, "Pending");
     }
 
 

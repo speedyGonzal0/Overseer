@@ -1,12 +1,12 @@
 import React from 'react'
-import './Login.css'
+import './EmployeeLogin.css'
 import { Input, Button, Link } from '@nextui-org/react';
 import { useState } from 'react';
 import axios from "axios"
 import { useNavigate } from "react-router-dom";
 
 
-const Login = ({loggedIn, setLoggedIn, setAdmin}) => {
+const EmployeeLogin = ({setLoggedIn, setAdmin, setEmployee}) => {
 
   let navigate = useNavigate();
 
@@ -15,20 +15,18 @@ const Login = ({loggedIn, setLoggedIn, setAdmin}) => {
 
   const submitLogin = (event) => {
     event.preventDefault();
-      axios.post("http://localhost:8080/user/signin", {
+      axios.post("http://localhost:8080/employee/signin", {
             email: email,
             password: pass
         }, { withCredentials: true }).then((response) => {
-            if (response.data.role) {
-              if(response.data.role === "Client"){
+            if (response.data) {
+              if(response.data.role === "Employee"){
                 setAdmin(false)
-                navigate("/request", { replace: true });
+                setLoggedIn(true)
+                setEmployee(true)
+                navigate("/deptOrders", { replace: true });
               }
-              else if(response.data.role === "Admin"){
-                setAdmin(true)
-                navigate("/orderRequests")
-              }
-              setLoggedIn(true);
+            //   setLoggedIn(true);
                 
                 // if(response.data.role == "Admin") { setAdmin(true) }
                 // console.log(response.data.role);
@@ -43,7 +41,7 @@ const Login = ({loggedIn, setLoggedIn, setAdmin}) => {
 
   return (
     <main className='loginMain'>
-      <h1>Login</h1>
+      <h1>Employee Login</h1>
       <form onSubmit={submitLogin} className="loginForm">
         <Input  labelPlaceholder="Email" required
               onChange={(e) => {
@@ -55,11 +53,8 @@ const Login = ({loggedIn, setLoggedIn, setAdmin}) => {
           }}/>
         <Button type="submit" shadow color="primary">Submit</Button>
       </form>
-      <Link block color="primary" href="http://localhost:3000/register">
-        Create an account
-      </Link>
     </main>
   )
 }
 
-export default Login
+export default EmployeeLogin
