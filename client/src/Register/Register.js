@@ -37,7 +37,7 @@ const Register = () => {
   
     const submitReg = (event) => {
       event.preventDefault();
-      axios.post("http://localhost:8080/user/register", {
+      axios.post("http://overseerserver-env.eba-y32sh6qs.ap-south-1.elasticbeanstalk.com/user/register", {
             name: name,
             email: email,
             pass: pass

@@ -12,7 +12,7 @@ const OrderDetails = () => {
     const [order, setOrder] = useState({})
 
     useEffect(() => {
-      axios.get(`http://localhost:8080/orders/${id}`).then((response) => {
+      axios.get(`http://overseerserver-env.eba-y32sh6qs.ap-south-1.elasticbeanstalk.com/orders/${id}`).then((response) => {
       setOrder(response.data);
     });
     }, [id])

@@ -10,7 +10,7 @@ const Departments = () => {
 
   useEffect(() => {
 
-    axios.get("http://localhost:8080/employee/all").then((response) => {
+    axios.get("http://overseerserver-env.eba-y32sh6qs.ap-south-1.elasticbeanstalk.com/employee/all").then((response) => {
       setDepartments(response.data)
     })
   }, [])
@@ -24,13 +24,13 @@ const Departments = () => {
 
   const fetchDeptTasks = (dept) => {
     setDeptID(departments.indexOf(dept));
-    axios.get(`http://localhost:8080/employee/tasks/${dept.employeeId}`).then((response) => {
+    axios.get(`http://overseerserver-env.eba-y32sh6qs.ap-south-1.elasticbeanstalk.com/employee/tasks/${dept.employeeId}`).then((response) => {
       setDeptTasks(response.data)
     })
   }
 
   // const fetchTaskTodos = (taskID) => {
-  //   axios.get(`http://localhost:8080/todo/task/${taskID}`).then((response) => {
+  //   axios.get(`http://overseerserver-env.eba-y32sh6qs.ap-south-1.elasticbeanstalk.com/todo/task/${taskID}`).then((response) => {
   //     setTaskTodos(response.data)
   //   })
   // }

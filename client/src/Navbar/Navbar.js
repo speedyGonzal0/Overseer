@@ -13,7 +13,7 @@ const Navbar = ( {loggedIn, setLoggedIn, admin, setAdmin, employee, setEmployee}
 
   const submitLogout = (event) => {
     event.preventDefault();
-    axios.get("http://localhost:8080/user/signout", {withCredentials : true}).then((response) => {
+    axios.get("http://overseerserver-env.eba-y32sh6qs.ap-south-1.elasticbeanstalk.com/user/signout", {withCredentials : true}).then((response) => {
       setLoggedIn(false);
       if(admin){
         setAdmin(false);
