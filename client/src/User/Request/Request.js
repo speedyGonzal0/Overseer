@@ -52,7 +52,7 @@ const Request = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         let cost = costPerProduct * quantity;
-        axios.post("http://overseerserver-env.eba-y32sh6qs.ap-south-1.elasticbeanstalk.com/orders/create", {
+        axios.post("http://localhost:8080/orders/create", {
             reqTitle: title,
             reqItem: product,
             reqItemSize: size,

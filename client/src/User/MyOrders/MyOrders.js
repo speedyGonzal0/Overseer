@@ -13,7 +13,7 @@ const MyOrders = () => {
 
   useEffect(() => {
     if(document.cookie){
-      axios.get("http://overseerserver-env.eba-y32sh6qs.ap-south-1.elasticbeanstalk.com/orders/user", {withCredentials : true}).then((response) => {
+      axios.get("http://localhost:8080/orders/user", {withCredentials : true}).then((response) => {
         setmyOrders(response.data)
         console.log(response.data);      
     });

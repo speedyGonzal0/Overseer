@@ -15,7 +15,7 @@ const EmployeeLogin = ({setLoggedIn, setAdmin, setEmployee}) => {
 
   const submitLogin = (event) => {
     event.preventDefault();
-      axios.post("http://overseerserver-env.eba-y32sh6qs.ap-south-1.elasticbeanstalk.com/employee/signin", {
+      axios.post("http://localhost:8080/employee/signin", {
             email: email,
             password: pass
         }, { withCredentials: true }).then((response) => {

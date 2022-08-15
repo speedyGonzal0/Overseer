@@ -19,20 +19,20 @@ const DeptOrders = () => {
 
     useEffect(() => {
 
-        axios.get("http://overseerserver-env.eba-y32sh6qs.ap-south-1.elasticbeanstalk.com/employee/tasks", {withCredentials:true}).then((response) => {
+        axios.get("http://localhost:8080/employee/tasks", {withCredentials:true}).then((response) => {
             console.log(response.data)
             setTasks(response.data)
         })
     }, [])
 
     // const fetchTaskTodos = (taskId) => {
-    //     axios.get(`http://overseerserver-env.eba-y32sh6qs.ap-south-1.elasticbeanstalk.com/todo/task/${taskId}`).then((response) => {
+    //     axios.get(`http://localhost:8080/todo/task/${taskId}`).then((response) => {
     //         setTodos(response.data)
     //     })
     // }
 
     const markTaskDone = (taskId) => {
-        axios.put(`http://overseerserver-env.eba-y32sh6qs.ap-south-1.elasticbeanstalk.com/tasks/complete/${taskId}`).then((response) => {
+        axios.put(`http://localhost:8080/tasks/complete/${taskId}`).then((response) => {
             console.log(response)
         })
     }

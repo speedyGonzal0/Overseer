@@ -15,7 +15,7 @@ function CreateDept() {
 
     const submitDept = (event) => {
         event.preventDefault();
-        axios.post("http://overseerserver-env.eba-y32sh6qs.ap-south-1.elasticbeanstalk.com/employee/register", {
+        axios.post("http://localhost:8080/employee/register", {
             employeeName: name,
             employeeEmail: email,
             employeePass: pass

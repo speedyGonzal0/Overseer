@@ -9,14 +9,14 @@ const OrderRequests = () => {
     const [orders, setOrders] = useState([])
 
         useEffect(() => {
-         axios.get("http://overseerserver-env.eba-y32sh6qs.ap-south-1.elasticbeanstalk.com/orders/all").then((response) => {
+         axios.get("http://localhost:8080/orders/all").then((response) => {
             setOrders(response.data.filter(data => {
                 return data.reqStatus === "Pending";
             }))
         })}, [orders])
 
         const handleApprove = (id) => {
-            axios.put(`http://overseerserver-env.eba-y32sh6qs.ap-south-1.elasticbeanstalk.com/orders/approve/${id}`).then(
+            axios.put(`http://localhost:8080/orders/approve/${id}`).then(
             (response) => {
                 console.log(response)
             }
@@ -24,7 +24,7 @@ const OrderRequests = () => {
         };
             
         const handleCancel = (id) => {
-            axios.put(`http://overseerserver-env.eba-y32sh6qs.ap-south-1.elasticbeanstalk.com/orders/cancel/${id}`).then(
+            axios.put(`http://localhost:8080/orders/cancel/${id}`).then(
             (response) => {
                 console.log(response)
             }

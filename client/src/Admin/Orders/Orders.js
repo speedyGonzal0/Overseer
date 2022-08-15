@@ -14,7 +14,7 @@ const Orders = () => {
     let orders;
 
       useEffect(() => {
-         axios.get("http://overseerserver-env.eba-y32sh6qs.ap-south-1.elasticbeanstalk.com/orders/all").then((response) => {
+         axios.get("http://localhost:8080/orders/all").then((response) => {
             console.log(response.data)
             setAllOrders(response.data.filter(data => {
                 return data.reqStatus !== "Pending";
