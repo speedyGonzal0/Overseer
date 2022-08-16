@@ -15,7 +15,7 @@ const DeptOrders = () => {
     //   ]
 
     const [tasks, setTasks] = useState([])
-    const [todos, setTodos] = useState([])
+    // const [todos, setTodos] = useState([])
 
     useEffect(() => {
 
@@ -25,11 +25,11 @@ const DeptOrders = () => {
         })
     }, [])
 
-    const fetchTaskTodos = (taskId) => {
-        axios.get(`http://localhost:8080/todo/task/${taskId}`).then((response) => {
-            setTodos(response.data)
-        })
-    }
+    // const fetchTaskTodos = (taskId) => {
+    //     axios.get(`http://localhost:8080/todo/task/${taskId}`).then((response) => {
+    //         setTodos(response.data)
+    //     })
+    // }
 
     const markTaskDone = (taskId) => {
         axios.put(`http://localhost:8080/tasks/complete/${taskId}`).then((response) => {
@@ -44,20 +44,8 @@ const DeptOrders = () => {
         <Collapse.Group className='deptOrders'>
         {
             tasks.map((task) => (
-                <Collapse key={task.taskId} className='order' title={`Task ID: ${task.taskId}`} onClick={() => fetchTaskTodos(task.taskId)}>
-                    <ol>
-                        {todos.map((todo) => 
-                            <li key={todo.todoID}>{todo.todoDetails}</li>
-                            )}
-
-                    </ol>
-                    {/* <Checkbox.Group
-                    color="primary"
-                    label="Assigned Tasks">
-                        {todos.map((todo) => 
-                        <Checkbox key={todo.todoID} isSelected={todo.checked}>{todo.todoDetails}</Checkbox>
-                        )}
-                    </Checkbox.Group> */}
+                <Collapse key={task.taskId} className='order' title={`Task ID: ${task.taskId}`}>
+                    <p>{task.taskDetails}</p>
                     <div className='deptBtn'><Button shadow color="primary" onClick={()=> markTaskDone(task.taskId)}>Mark As Done</Button></div>
                 </Collapse>
             ))

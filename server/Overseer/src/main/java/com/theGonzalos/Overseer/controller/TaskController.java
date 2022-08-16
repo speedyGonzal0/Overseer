@@ -54,6 +54,7 @@ public class TaskController {
         newTask.setEmployee(employee);
         newTask.setDue(task.getDue());
         newTask.setTaskStatus("Pending");
+        newTask.setTaskDetails(task.getTaskDetails());
         taskService.setTask(newTask);
         JSONObject resp = new JSONObject();
         resp.put("message","Added new task to the order");

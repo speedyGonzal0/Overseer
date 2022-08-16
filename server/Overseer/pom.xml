@@ -10,11 +10,13 @@
 	</parent>
 	<groupId>com.theGonzalos</groupId>
 	<artifactId>Overseer</artifactId>
+	<packaging>jar</packaging>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Overseer</name>
 	<description>A project for Therap javafest </description>
 	<properties>
 		<java.version>17</java.version>
+		<start-class>com.theGonzalos.Overseer.OverseerApplication</start-class>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -52,7 +54,24 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+<!--			<plugin>-->
+<!--				<groupId>org.apache.maven.plugins</groupId>-->
+<!--				<artifactId>maven-jar-plugin</artifactId>-->
+<!--				<configuration>-->
+<!--					&lt;!&ndash; DO NOT include log4j.properties file in your Jar &ndash;&gt;-->
+<!--					<excludes>-->
+<!--						<exclude>**/log4j.properties</exclude>-->
+<!--					</excludes>-->
+<!--					<archive>-->
+<!--						<manifest>-->
+<!--							&lt;!&ndash; Jar file entry point &ndash;&gt;-->
+<!--							<mainClass>com.theGonzalos.Overseer.OverseerApplication</mainClass>-->
+<!--						</manifest>-->
+<!--					</archive>-->
+<!--				</configuration>-->
+<!--			</plugin>-->
 		</plugins>
+
 	</build>
 
 </project>
