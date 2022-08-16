@@ -34,6 +34,7 @@ const Navbar = ( {loggedIn, setLoggedIn, admin, setAdmin, employee, setEmployee}
           <Link to="/"> <b>Home</b> </Link>
           <Link to="/request"> <b>Place Order</b> </Link>
           <Link to="/myOrders"> <b>My Orders</b> </Link>
+          <Link to="/mail"> <b>Contact Us</b> </Link>
         </div>  
         :
         <div className="adminNavbarLinks">

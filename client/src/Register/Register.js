@@ -63,7 +63,7 @@ const Register = () => {
               onChange={(e) => {
               setName(e.target.value);
             }}/>
-        <Input labelPlaceholder="Email" required type="email"
+        <Input labelPlaceholder="Email" required
               onChange={(e) => {
               setEmail(e.target.value);
             }}/>
