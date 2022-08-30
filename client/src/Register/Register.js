@@ -5,6 +5,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
 
@@ -12,6 +13,8 @@ const Register = () => {
     const [email, setEmail] = useState()
     const [pass, setPass] = useState()
     const [regSuccess, setRegSuccess] = useState()
+
+    let navigate = useNavigate();
 
     const regNotify = () => {regSuccess?
         toast.success('Registration successful', {
@@ -44,7 +47,7 @@ const Register = () => {
         }).then((response) => {
             if (response.data.message) {
                 setRegSuccess(true)
-                // navigate("../login", { replace: true });
+                navigate("/login", { replace: true });
                 console.log(response.data.message);
             }
             else {

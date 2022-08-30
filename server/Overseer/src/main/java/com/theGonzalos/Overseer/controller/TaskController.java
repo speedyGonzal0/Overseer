@@ -101,6 +101,22 @@ public class TaskController {
             Task task = taskService.getTaskByID(taskID);
             task.setTaskStatus("Completed");
             taskService.setTask(task);
+            List<Task> tasks = taskService.getTasksByReqId(task.getOrder().getReqId());
+            boolean orderComplete = false;
+            for(Task t : tasks){
+                if(t.getTaskStatus().equals("Pending")){
+                    orderComplete = false;
+                    break;
+                }
+                else if(t.getTaskStatus().equals("Completed")){
+                    orderComplete = true;
+                }
+            }
+            if(orderComplete){
+                Orders order = requestsService.getRequest(task.getOrder().getReqId());
+                order.setReqStatus("Completed");
+                requestsService.sendOrder(order);
+            }
             JSONObject resp = new JSONObject();
             resp.put("message","Marked task as done");
             return new ResponseEntity<>(resp.toString(), HttpStatus.OK);

@@ -16,6 +16,7 @@ import Error from './Error/Error';
 import { NextUIProvider } from '@nextui-org/react';
 import Mail from './User/Mail/Mail';
 import EmployeeLogin from './Employee/EmployeeLogin/EmployeeLogin';
+import CreateDept from './Admin/CreateDept/CreateDept';
 
 function App() {
 
@@ -54,6 +55,7 @@ function App() {
                 <Route path="/login" element={<Login loggedIn = {loggedIn} setLoggedIn={setLoggedIn} setAdmin={setAdmin}/>}/>
                 <Route path="/register" element={<Register/>}/>
                 <Route path="/employeeLogin" element={<EmployeeLogin setLoggedIn={setLoggedIn} setAdmin={setAdmin} setEmployee={setEmployee}/>}/>
+                <Route path="/createDept" element={<CreateDept/>}/>
                 </>
                 :
                 <>
