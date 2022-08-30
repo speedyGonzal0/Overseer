@@ -10,6 +10,10 @@
     margin: 2% 0%;
 }
 
+.searchInput{
+    width: 950px;
+}
+
 .myOrdersTable{
     background-color: skyblue;
     width: 800px;

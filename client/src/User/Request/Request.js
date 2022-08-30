@@ -42,9 +42,11 @@ const Request = () => {
 
        let tempProduct =  productPrices.filter( item => {
             if(item.name === product) {return item.price}
+            return ""
         })
         let tempMat =  materialPrices.filter( item => {
             if(item.material === material) {return item.price}
+            return ""
         })
        setcostPerProduct(tempProduct[0].price + tempMat[0].price)        
     }

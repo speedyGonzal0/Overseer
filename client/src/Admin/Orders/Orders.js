@@ -1,6 +1,6 @@
 import React from 'react'
 import "./Orders.css"
-import { Button, Grid, Card} from "@nextui-org/react";
+import { Button, Grid, Card, Input} from "@nextui-org/react";
 import { useNavigate } from 'react-router-dom';
 import { useState,useEffect } from 'react';
 import axios from "axios"
@@ -11,6 +11,7 @@ const Orders = () => {
 
     const [action, setAction] = useState("all")
     const [allorders, setAllOrders] = useState([])
+    const [searchedOrder, setSearchedOrder] = useState('');
 
     let orders;
 
@@ -26,6 +27,8 @@ const Orders = () => {
     orders = allorders.filter((order) => {
         if(action === 'all'){
             return order;
+        } else if (action === "search" && (order.reqId == searchedOrder || searchedOrder === "")){
+            return order
         } else if (action === 'processing'){
             return order.reqStatus === "Processing"
         } else if (action === 'completed'){
@@ -44,6 +47,11 @@ const Orders = () => {
   return (
     <main className='ordersContainer'>
         <h1>Orders</h1>
+        <Input className='searchInput' bordered labelPlaceholder="Search order by ID" color="default" 
+        onChange={(event) => {
+            setAction("search")
+            setSearchedOrder(event.target.value)
+        }}/>
         <div className="ordersGrid">
         <h5>Filter</h5>
         <Grid.Container gap={2} className="ordersGridContainer">

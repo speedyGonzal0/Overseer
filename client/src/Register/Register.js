@@ -11,9 +11,9 @@ const Register = () => {
     const [name, setName] = useState()
     const [email, setEmail] = useState()
     const [pass, setPass] = useState()
-    const [regSuccess, setRegSuccess] = useState()
+    // const [regSuccess, setRegSuccess] = useState(false)
 
-    const regNotify = () => {regSuccess?
+    const regNotify = (regSuccess) => {regSuccess?
         toast.success('Registration successful', {
           position: "top-right",
           autoClose: 5000,
@@ -21,7 +21,6 @@ const Register = () => {
           closeOnClick: true,
           pauseOnHover: true,
           draggable: true,
-          progress: undefined,
           })
         : 
         toast.error('Registration unsuccessful', {
@@ -31,7 +30,6 @@ const Register = () => {
           closeOnClick: true,
           pauseOnHover: true,
           draggable: true,
-          progress: undefined,
           })
     };
   
@@ -42,16 +40,11 @@ const Register = () => {
             email: email,
             pass: pass
         }).then((response) => {
-            if (response.data.message) {
-                setRegSuccess(true)
-                // navigate("../login", { replace: true });
-                console.log(response.data.message);
-            }
-            else {
-                setRegSuccess(false)
-                console.log(response.data);
-            }
-        });
+          regNotify(true)
+        })
+        .catch(err => {
+          regNotify(false)
+        })
         event.target.reset();
     }
 
@@ -71,7 +64,7 @@ const Register = () => {
             onChange={(e) => {
             setPass(e.target.value);
           }}/>
-        <Button type="submit" shadow color="primary" onClick={regNotify}>Submit</Button>
+        <Button type="submit" shadow color="primary">Submit</Button>
       </form>
       <Link block color="primary" href="http://localhost:3000/login">
         Already have an account
