@@ -6,7 +6,7 @@ import axios from "axios"
 import { useEffect } from 'react';
 
 
-const Navbar = ( {loggedIn, setLoggedIn, admin, setAdmin, employee, setEmployee} ) => {
+const Navbar = ( {loggedIn, setLoggedIn, employee, setEmployee} ) => {
 
   let navigate = useNavigate(); 
   
@@ -15,10 +15,11 @@ const Navbar = ( {loggedIn, setLoggedIn, admin, setAdmin, employee, setEmployee}
     event.preventDefault();
     axios.get("http://localhost:8080/user/signout", {withCredentials : true}).then((response) => {
       setLoggedIn(false);
-      if(admin){
-        setAdmin(false);
-        setEmployee(false);
-      }
+      // if(admin){
+      //   setAdmin(false);
+      //   setEmployee(false);
+      // }
+      window.localStorage.clear();
       navigate("/login");
       console.log(response.data);      
     });  
@@ -29,7 +30,7 @@ const Navbar = ( {loggedIn, setLoggedIn, admin, setAdmin, employee, setEmployee}
       <div className="navbarLogo">
         <h2>Overseer</h2>
       </div>
-      {!admin ? 
+      {window.localStorage.getItem("isAdmin") === "false" || !window.localStorage.getItem("isAdmin")  ? 
         <div className="navbarLinks">
           <Link to="/"> <b>Home</b> </Link>
           <Link to="/request"> <b>Place Order</b> </Link>
@@ -45,10 +46,11 @@ const Navbar = ( {loggedIn, setLoggedIn, admin, setAdmin, employee, setEmployee}
         </div>
     }
       
-      { !loggedIn ? 
+      { !document.cookie ? 
           <div className="navbarLogin">
-            <Button onClick={()=> navigate("/register")}>Register</Button>
-            <Button bordered onClick={() => navigate("/login")}>Log In</Button>
+            <Button onClick={() => navigate("/login")}>Log In</Button>
+            <Button bordered onClick={()=> navigate("/register")}>Register</Button>
+            
             {/* <Button onClick={() => setLoggedIn(true)}>temp</Button> */}
           </div>
           :

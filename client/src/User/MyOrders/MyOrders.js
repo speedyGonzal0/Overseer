@@ -32,7 +32,7 @@ const MyOrders = () => {
             <div className='myOrdersBody'>
               <p>Due: {order.reqDate} </p>
               <p>Total Cost: {order.reqCost} BDT</p>
-              <p>Status: {order.reqStatus} </p>
+              <Button bordered size="sm">{order.reqStatus} </Button>
             </div>
           </Card.Body>
         </Card>

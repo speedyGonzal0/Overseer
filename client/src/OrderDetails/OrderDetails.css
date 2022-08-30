@@ -4,10 +4,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    /* justify-content: center; */
     flex-shrink: 0;
     gap: 5%;
-    /* background-color: antiquewhite; */
 }
 
 .orderDetailsBody{
@@ -15,7 +14,6 @@
     height: 50%;
     display: flex;
     flex-direction: column;
-    /* background-color: aquamarine; */
     align-items: center;
     gap: 5%;
     flex-shrink: 0;
@@ -30,23 +28,56 @@
     flex-shrink: 0;
 }
 
-/* .adminActions{
-    width: 50%;
-    height: 50%;
+.orderDetailsAdminPanel{
     display: flex;
+    width: 50%;
     flex-direction: column;
+    flex-shrink: 0;
     align-items: center;
-    gap: 5%;
+    gap: 2em;
 }
 
-.orderDetailsTasks{
+.orderDetailsMarkDelivered{
+    display: flex;
     width: 100%;
+    flex-direction: column;
     flex-shrink: 0;
+    align-items: center;
+    gap: 1em;
 }
-.orderDetailsTaskCreator{
+
+.orderDetailsAdminAssign{
+    display: flex;
     width: 100%;
+    flex-direction: column;
     flex-shrink: 0;
-} */
+    align-items: center;
+    gap: 1em;
+}
+
+.orderDetailsAdminCreate{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    flex-shrink: 0;
+    align-items: center;
+    margin-bottom: 1em;
+}
+
+
+.assignedTaskCard{
+    gap: 1em;
+}
+
+.taskCreateCardBody{
+    gap: 1em;
+}
+
+.taskCreateButton{
+    display: flex;
+    justify-content: center;
+}
+
 .progress{
     width: 100%;
 }

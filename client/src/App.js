@@ -21,7 +21,7 @@ import CreateDept from './Admin/CreateDept/CreateDept';
 function App() {
 
   const [loggedIn, setLoggedIn] = useState();
-  const [admin, setAdmin] = useState();
+  // const [admin, setAdmin] = useState();
   const [employee, setEmployee] = useState();
 
   useEffect(() => {
@@ -31,14 +31,14 @@ function App() {
     else{
       setLoggedIn(false)
     }    
-  }, [loggedIn, admin])
+  }, [loggedIn])
   
 
 
   return (
     <NextUIProvider>
       <BrowserRouter>
-        <Navbar loggedIn = {loggedIn} setLoggedIn={setLoggedIn} admin = {admin} setAdmin = {setAdmin}/>
+        <Navbar loggedIn = {loggedIn} setLoggedIn={setLoggedIn} setEmployee={setEmployee}/>
           <main className='app'>          
               <Routes>
                 {loggedIn? 
@@ -52,9 +52,9 @@ function App() {
                 <Route path="/orders" element={<Orders/>}/>
                 <Route path="/mail" element={<Mail/>}/>
                 <Route path="/departments" element={<Departments/>}/>
-                <Route path="/login" element={<Login loggedIn = {loggedIn} setLoggedIn={setLoggedIn} setAdmin={setAdmin}/>}/>
+                <Route path="/login" element={<Login loggedIn = {loggedIn} setLoggedIn={setLoggedIn} />}/>
                 <Route path="/register" element={<Register/>}/>
-                <Route path="/employeeLogin" element={<EmployeeLogin setLoggedIn={setLoggedIn} setAdmin={setAdmin} setEmployee={setEmployee}/>}/>
+                <Route path="/employeeLogin" element={<EmployeeLogin setLoggedIn={setLoggedIn}  setEmployee={setEmployee}/>}/>
                 <Route path="/createDept" element={<CreateDept/>}/>
                 </>
                 :
@@ -66,11 +66,11 @@ function App() {
                 <Route path="/request" element={<Error/>}/>
                 <Route path="/orderRequests" element={<Error/>}/>
                 <Route path="/orders" element={<Error/>}/>
-                <Route path="/mail" element={<Mail/>}/>
+                <Route path="/mail" element={<Error/>}/>
                 <Route path="/departments" element={<Error/>}/>
-                <Route path="/login" element={<Login loggedIn = {loggedIn} setLoggedIn={setLoggedIn} setAdmin={setAdmin}/>}/>
+                <Route path="/login" element={<Login loggedIn = {loggedIn} setLoggedIn={setLoggedIn} />}/>
                 <Route path="/register" element={<Register/>}/>
-                <Route path="/employeeLogin" element={<EmployeeLogin setLoggedIn={setLoggedIn} setAdmin={setAdmin} setEmployee={setEmployee}/>}/>
+                <Route path="/employeeLogin" element={<EmployeeLogin setLoggedIn={setLoggedIn}  setEmployee={setEmployee}/>}/>
                 </>
                 }   
               </Routes>          
