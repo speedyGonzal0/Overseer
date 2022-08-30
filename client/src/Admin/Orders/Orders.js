@@ -35,6 +35,10 @@ const Orders = () => {
             return order.reqStatus === "Completed"
         } else if (action === 'canceled'){
             return order.reqStatus === "Canceled"
+        } else if(action === 'approved'){
+            return order.reqStatus === "Approved"
+        } else if(action === 'delivered'){
+            return order.reqStatus === "Delivered"
         }
     })
 
@@ -59,10 +63,16 @@ const Orders = () => {
                 <Button color="primary" shadow onClick={() => setAction("all")}>All</Button>
             </Grid>
             <Grid>
+                <Button color="primary" shadow onClick={() => setAction("approved")}>Approved</Button>
+            </Grid>
+            <Grid>
                 <Button color="primary" shadow onClick={() => setAction("processing")}>Processing</Button>
             </Grid>
             <Grid>
                 <Button color="primary" shadow onClick={() => setAction("completed")}>Completed</Button>
+            </Grid>
+            <Grid>
+                <Button color="primary" shadow onClick={() => setAction("delivered")}>Delivered</Button>
             </Grid>
             <Grid>
                 <Button color="primary" shadow onClick={() => setAction("canceled")}>Canceled</Button>
@@ -83,6 +93,12 @@ const Orders = () => {
                 <Card isPressable isHoverable variant="bordered" className='orderCard' key={order.reqId}>
                     <Card.Body onClick={ () => navigate(`/myOrders/${order.reqId}`)}>
                         <h3>Order #{order.reqId}</h3>
+                        <div className='orderBody'>
+                            <b>User: {order.userId.name}</b>
+                            <b>Title: {order.reqTitle} </b>
+                            <Button bordered size="sm">{order.reqStatus} </Button>
+                        </div>
+                        <Card.Divider/>
                         <div className='orderBody'>
                             <p>Product: {order.reqItem}</p>
                             <p>Due: {order.reqDate} </p>

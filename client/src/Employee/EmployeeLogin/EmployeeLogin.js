@@ -6,7 +6,7 @@ import axios from "axios"
 import { useNavigate } from "react-router-dom";
 
 
-const EmployeeLogin = ({setLoggedIn, setAdmin, setEmployee}) => {
+const EmployeeLogin = ({setLoggedIn, setEmployee}) => {
 
   let navigate = useNavigate();
 
@@ -21,7 +21,7 @@ const EmployeeLogin = ({setLoggedIn, setAdmin, setEmployee}) => {
         }, { withCredentials: true }).then((response) => {
             if (response.data) {
               if(response.data.role === "Employee"){
-                setAdmin(false)
+                // setAdmin(false)
                 setLoggedIn(true)
                 setEmployee(true)
                 navigate("/deptOrders", { replace: true });

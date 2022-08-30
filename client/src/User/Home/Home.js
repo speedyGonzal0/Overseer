@@ -11,7 +11,7 @@ function Home() {
     <div className='homeContainer'>
         <h1>Welcome to Overseer</h1>
         <h3>The ultimate order management system</h3>
-        <Button size="xl" onClick={() => navigate("/request")}> Get Started</Button>
+        <Button shadow size="xl" onClick={() => navigate("/request")}> See Demo </Button>
     </div>
   )
 }

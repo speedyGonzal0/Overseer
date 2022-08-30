@@ -8,7 +8,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
-const Login = ({loggedIn, setLoggedIn, setAdmin}) => {
+const Login = ({loggedIn, setLoggedIn}) => {
 
   let navigate = useNavigate();
 
@@ -35,11 +35,13 @@ const Login = ({loggedIn, setLoggedIn, setAdmin}) => {
         }, { withCredentials: true }).then((response) => {
             if (response.data.role) {
               if(response.data.role === "Client"){
-                setAdmin(false)
+                window.localStorage.setItem("isAdmin", "false");
+                // setAdmin(false)
                 navigate("/request", { replace: true });
               }
               else if(response.data.role === "Admin"){
-                setAdmin(true)
+                window.localStorage.setItem("isAdmin", "true");
+                // setAdmin(true)
                 navigate("/orderRequests")
               }
               setLoggedIn(true);
